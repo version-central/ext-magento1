@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+<acl>
+    <resources>
+        <admin>
+            <children>
+                <system>
+                    <children>
+                        <config>
+                            <children>
+                                <k10r_versioncentral translate="title" module="k10r_versioncentral">
+                                    <title>Versioncentral</title>
+                                </k10r_versioncentral>
+                            </children>
+                        </config>
+                    </children>
+                </system>
+            </children>
+        </admin>
+    </resources>
+</acl>
+</config>

@@ -1,0 +1,19 @@
+<script type="text/javascript">
+    //<![CDATA[
+    function test() {
+        new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
+            method:     'get',
+            onSuccess: function(transport){
+
+                if (transport.responseText === "1"){
+                    alert('<?php echo $this->helper("k10r_versioncentral")->__("Connection successful") ?>');
+                } else {
+                    alert('<?php echo $this->helper("k10r_versioncentral")->__("Connection unsuccessful") ?>');
+                }
+            }
+        });
+    }
+    //]]>
+</script>
+
+<?php echo $this->getButtonHtml() ?>

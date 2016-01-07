@@ -1,0 +1,4 @@
+src/app/code/community/K10r/Versioncentral app/code/community/K10r/Versioncentral
+src/app/etc/modules/K10r_Versioncentral.xml app/etc/modules/K10r_Versioncentral.xml
+src/app/locale/de_DE/K10r_Versioncentral.csv app/locale/de_DE/K10r_Versioncentral.csv
+src/app/design/adminhtml/default/default/template/k10r_versioncentral app/design/adminhtml/default/default/template/k10r_versioncentral

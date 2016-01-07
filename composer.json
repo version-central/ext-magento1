@@ -1,0 +1,16 @@
+{
+  "name":"k10r/versioncentral",
+  "type":"magento-module",
+  "license":"MIT",
+  "homepage":"https://versioncentral.de",
+  "description":"Magento extension to connect to Versioncentral and keep modules up-to-date.",
+  "authors":[
+    {
+      "name":"Uwe Kleinmann",
+      "email":"u.kleinmann@k10r.de"
+    }
+  ],
+  "require":{
+    "magento-hackathon/magento-composer-installer":"*"
+  }
+}
