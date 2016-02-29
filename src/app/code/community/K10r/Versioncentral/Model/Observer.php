@@ -1,11 +1,11 @@
 <?php
 
 class K10r_Versioncentral_Model_Observer {
-    const URL_VERSIONCENTRAL = 'http://data.versioncentral.vm';
+    const URL_VERSIONCENTRAL = 'http://data.version-central.vm';
 
     public function verify() {
         $client = $this->_getClient();
-        $client->setMethod(Varien_Http_Client::HEAD);
+        $client->setMethod(Zend_Http_Client::HEAD);
 
         $success = false;
         try{
@@ -20,30 +20,41 @@ class K10r_Versioncentral_Model_Observer {
     }
 
     public function update() {
-        if(!Mage::helper("k10r_versioncentral")->getEnabled()) {
+        if(!Mage::helper("k10r_versioncentral")->getActive()) {
             return;
         }
 
         if(!$this->verify()) {
-            Mage::log("Connection to Versioncentral unsuccessful");
+            Mage::log("Connection to VersionCentral unsuccessful");
             return false;
         }
 
         $client = $this->_getClient();
-        $client->setMethod(Varien_Http_Client::PUT);
+        $client->setMethod(Zend_Http_Client::PUT);
         $client->setRawData(Zend_Json::encode($this->_getData()), "application/json");
-        Zend_Debug::dump($this->_getData()); die();
 
         try{
             $response = $client->request();
             if ($response->isSuccessful()) {
+                Mage::log("VersionCentral update successful");
+            } else {
+                $errors = Zend_Json::decode($response->getBody());
+                throw new K10r_Versioncentral_Exception(print_r($errors, true));
             }
         } catch (Exception $e) {
+            Mage::log("VersionCentral update request failed");
+            Mage::logException($e);
+        }
+    }
+
+    public function afterSaveConfig(Varien_Event_Observer $observer) {
+        if($observer->getEvent()->getSection() === "k10r_versioncentral") {
+            $this->update();
         }
     }
 
     protected function _getClient() {
-        $client = new Varien_Http_Client(self::URL_VERSIONCENTRAL);
+        $client = new Zend_Http_Client(self::URL_VERSIONCENTRAL);
         $client->setHeaders("Accept", "application/vnd.version-central-v1+json");
         $client->setHeaders("Authorization", sprintf("Basic %s", base64_encode(Mage::helper("k10r_versioncentral")->getAuthorization())));
 
@@ -55,6 +66,10 @@ class K10r_Versioncentral_Model_Observer {
             "application" => [
                 "identifier" => "magento",
                 "version" => Mage::getVersion(),
+            ],
+            "meta" => [
+                "name" => Mage::helper("k10r_versioncentral")->getName(),
+                "url" => Mage::getBaseUrl(),
             ],
             "packages" => $this->_getModules(),
         ];

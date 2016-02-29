@@ -35,7 +35,7 @@ class K10r_Versioncentral_Block_Adminhtml_System_Config_Form_Button extends Mage
             ->setData(array(
                 "id"        => "k10r_versioncentral_button",
                 "label"     => $this->helper("k10r_versioncentral")->__("Check"),
-                "onclick"   => "javascript:test(); return false;"
+                "onclick"   => "javascript:k10r_versioncentral_test(); return false;"
             ));
 
         return $button->toHtml();

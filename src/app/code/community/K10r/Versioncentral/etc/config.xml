@@ -32,6 +32,17 @@
                 </k10r_versioncentral>
             </modules>
         </translate>
+        <events>
+            <admin_system_config_section_save_after>
+                <observers>
+                    <k10r_versioncentral>
+                        <type>singleton</type>
+                        <class>k10r_versioncentral/observer</class>
+                        <method>afterSaveConfig</method>
+                    </k10r_versioncentral>
+                </observers>
+            </admin_system_config_section_save_after>
+        </events>
     </adminhtml>
     <admin>
         <routers>
