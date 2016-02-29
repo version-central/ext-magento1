@@ -2,7 +2,7 @@
 <config>
     <modules>
         <K10r_Versioncentral>
-            <version>0.1.0</version>
+            <version>1.0.0</version>
         </K10r_Versioncentral>
     </modules>
     <global>
@@ -71,6 +71,7 @@
         <k10r_versioncentral>
             <general>
                 <active>0</active>
+                <name></name>
                 <api_identifier></api_identifier>
                 <api_token></api_token>
             </general>
