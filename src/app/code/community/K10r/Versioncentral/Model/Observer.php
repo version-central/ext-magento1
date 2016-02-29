@@ -64,7 +64,7 @@ class K10r_Versioncentral_Model_Observer {
     protected function _getData() {
         $data = [
             "application" => [
-                "identifier" => "magento",
+                "identifier" => "magento1",
                 "version" => Mage::getVersion(),
             ],
             "meta" => [
