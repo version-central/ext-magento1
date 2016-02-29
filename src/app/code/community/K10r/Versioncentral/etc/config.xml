@@ -72,8 +72,7 @@
             <general>
                 <active>0</active>
                 <name></name>
-                <api_identifier></api_identifier>
-                <api_token></api_token>
+                <token></token>
             </general>
         </k10r_versioncentral>
     </default>
