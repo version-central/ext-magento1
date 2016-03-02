@@ -1,7 +1,7 @@
 <?php
 
 class K10r_Versioncentral_Model_Observer {
-    const URL_VERSIONCENTRAL = 'https://data.version-central.de';
+    const URL_VERSIONCENTRAL = 'https://data.versioncentral.com';
 
     public function verify() {
         $client = $this->_getClient();

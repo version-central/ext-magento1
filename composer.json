@@ -2,7 +2,7 @@
   "name":"k10r/versioncentral",
   "type":"magento-module",
   "license":"Commercial",
-  "homepage":"https://version-central.de",
+  "homepage":"https://versioncentral.com",
   "description":"Magento extension to connect to VersionCentral and keep modules up-to-date.",
   "authors":[
     {
