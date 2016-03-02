@@ -19,6 +19,28 @@ class K10r_Versioncentral_Model_Observer {
         return $success;
     }
 
+    public function scheduleUpdate() {
+        if(!Mage::helper("k10r_versioncentral")->getActive()) {
+            return;
+        }
+
+        $created = new DateTime();
+        $scheduled = new DateTime();
+        $hours = rand(0, 23);
+        $scheduled->add(new DateInterval("PT" . $hours . "H"));
+
+        try {
+            $schedule = Mage::getModel("cron/schedule");
+            $schedule->setJobCode("k10r_versioncentral_update")
+                ->setCreatedAt($created->format("Y-m-d H:i:s"))
+                ->setScheduledAt($scheduled->format("Y-m-d H:i:s"))
+                ->setStatus(Mage_Cron_Model_Schedule::STATUS_PENDING)
+                ->save();
+        } catch (Exception $e) {
+            throw new K10r_Versioncentral_Exception("VersionCentral: Unable to schedule update cronjob.");
+        }
+    }
+
     public function update() {
         if(!Mage::helper("k10r_versioncentral")->getActive()) {
             return;

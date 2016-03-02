@@ -57,10 +57,15 @@
     </admin>
     <crontab>
         <jobs>
-            <k10r_versioncentral_update>
+            <k10r_versioncentral_schedule_update>
                 <schedule>
                     <cron_expr>0 2 * * *</cron_expr>
                 </schedule>
+                <run>
+                    <model>k10r_versioncentral/observer::scheduleUpdate</model>
+                </run>
+            </k10r_versioncentral_schedule_update>
+            <k10r_versioncentral_update>
                 <run>
                     <model>k10r_versioncentral/observer::update</model>
                 </run>
