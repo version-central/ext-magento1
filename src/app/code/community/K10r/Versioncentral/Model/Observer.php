@@ -39,11 +39,11 @@ class K10r_Versioncentral_Model_Observer {
             if ($response->isSuccessful()) {
                 Mage::log("VersionCentral update successful");
             } else {
-                $errors = Zend_Json::decode($response->getBody());
-                foreach($errors as $error) {
+                $body = Zend_Json::decode($response->getBody());
+                foreach($body["errors"] as $error) {
                     Mage::getSingleton("adminhtml/session")->addError(Mage::helper("k10r_versioncentral/error")->getErrorMessage($error["code"]));
                 }
-                throw new K10r_Versioncentral_Exception($errors);
+                throw new K10r_Versioncentral_Exception($body["errors"]);
             }
         } catch (Exception $e) {
             Mage::log("VersionCentral update request failed");
