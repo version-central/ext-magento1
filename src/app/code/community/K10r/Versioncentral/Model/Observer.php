@@ -88,33 +88,33 @@ class K10r_Versioncentral_Model_Observer {
     }
 
     protected function _getData() {
-        $data = [
-            "application" => [
+        $data = array(
+            "application" => array(
                 "identifier" => "magento1",
                 "version" => Mage::getVersion(),
-            ],
-            "meta" => [
+            ),
+            "meta" => array(
                 "name" => Mage::helper("k10r_versioncentral")->getName(),
                 "url" => Mage::getBaseUrl(),
-            ],
+            ),
             "packages" => $this->_getModules(),
-        ];
+        );
 
         return $data;
     }
 
     protected function _getModules() {
-        $modules = [];
+        $modules = array();
 
         $config = Mage::getConfig();
         /** @var Mage_Core_Model_Config_Element $item */
         foreach($config->getNode("modules")->children() as $item){
             if($item->codePool->__toString() !== "core" && $item->is("active")) {
-                $modules[] = [
+                $modules[] = array(
                     "identifier" => $item->getName(),
                     "version" => $item->version->__toString(),
                     "active" => $item->is("active"),
-                ];
+                );
             }
         }
 
