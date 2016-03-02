@@ -83,7 +83,7 @@ class K10r_Versioncentral_Model_Observer {
         $config = Mage::getConfig();
         /** @var Mage_Core_Model_Config_Element $item */
         foreach($config->getNode("modules")->children() as $item){
-            if($item->codePool->__toString() !== "core") {
+            if($item->codePool->__toString() !== "core" && $item->is("active")) {
                 $modules[] = [
                     "identifier" => $item->getName(),
                     "version" => $item->version->__toString(),
