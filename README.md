@@ -27,6 +27,8 @@ modman clone https://github.com/version-central/ext-magento1
 
 Afterwards open `System > Configuration > General > VersionCentral` in your Magento backend and add your application token from the VersionCentral project. After saving the configuration, information should appear for your application in the VersionCentral dashboard.
 
+**Note:** Ensure that your Magento cronjob is configured and running correctly.
+
 ## Contact
 
 If you have any problems or suggestions, just email us at [versioncentral@k10r.de](mailto:versioncentral@k10r.de).
