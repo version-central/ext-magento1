@@ -26,6 +26,7 @@ class K10r_Versioncentral_Model_Observer {
 
         if(!$this->verify()) {
             Mage::log("Connection to VersionCentral unsuccessful");
+            Mage::getSingleton("adminhtml/session")->addError(Mage::helper("k10r_versioncentral")->__("Connection unsuccessful"));
             return false;
         }
 
@@ -39,7 +40,10 @@ class K10r_Versioncentral_Model_Observer {
                 Mage::log("VersionCentral update successful");
             } else {
                 $errors = Zend_Json::decode($response->getBody());
-                throw new K10r_Versioncentral_Exception(print_r($errors, true));
+                foreach($errors as $error) {
+                    Mage::getSingleton("adminhtml/session")->addError(Mage::helper("k10r_versioncentral/error")->getErrorMessage($error["code"]));
+                }
+                throw new K10r_Versioncentral_Exception($errors);
             }
         } catch (Exception $e) {
             Mage::log("VersionCentral update request failed");
